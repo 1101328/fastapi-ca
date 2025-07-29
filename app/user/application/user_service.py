@@ -16,7 +16,13 @@ class UserService:
     ):
         self.user_repo = user_repo
 
-    def create_user(self, name: str, email: str, password: str):
+    def create_user(
+            self,
+            name:str,
+            email:str,
+            password:str,
+            memo: str | None = None,
+            ):
         _user = None
 
         try:
@@ -34,6 +40,7 @@ class UserService:
             name=name,
             email=email,
             password=self.crypto.encrypt(password),
+            memo=memo,
             created_at=now,
             updated_at=now
         )
